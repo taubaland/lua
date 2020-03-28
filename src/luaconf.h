@@ -719,7 +719,7 @@
 ** space (and to reserve some numbers for pseudo-indices).
 */
 #if LUAI_BITSINT >= 32
-#define LUAI_MAXSTACK		1000000
+#define LUAI_MAXSTACK		512
 #else
 #define LUAI_MAXSTACK		15000
 #endif

@@ -4,6 +4,18 @@
 ** See Copyright Notice in lua.h
 */
 
+
+/////// changes
+// only thing touched is DumpHeader at the bottom of this file
+// just overrides sizeof(size_t) and sizeof(int) to 4bytes
+// this matches the result on 32bit arm cortex.
+//
+// endianness is same on intel & stm cortex-m7 devices
+
+
+
+
+
 #define ldump_c
 #define LUA_CORE
 
@@ -186,8 +198,8 @@ static void DumpHeader (DumpState *D) {
   DumpByte(LUAC_VERSION, D);
   DumpByte(LUAC_FORMAT, D);
   DumpLiteral(LUAC_DATA, D);
-  DumpByte(sizeof(int), D);
-  DumpByte(sizeof(size_t), D);
+  DumpByte(sizeof(int32_t), D);
+  DumpByte(sizeof(int32_t), D);
   DumpByte(sizeof(Instruction), D);
   DumpByte(sizeof(lua_Integer), D);
   DumpByte(sizeof(lua_Number), D);

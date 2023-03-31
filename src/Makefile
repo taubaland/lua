@@ -7,14 +7,14 @@
 PLAT= none
 
 
-CC=/opt/gcc-arm-eabi-6-2017-q1/bin/arm-none-eabi-gcc 
-# CC= gcc -std=gnu99
-CFLAGS= -O2 -Wall -Wextra -DLUA_COMPAT_5_2 $(SYSCFLAGS) $(MYCFLAGS)
+# CC=/opt/gcc-arm-eabi-6-2017-q1/bin/arm-none-eabi-gcc 
+CC= gcc -std=gnu99 -DLUA_COMPAT_5_2 -DLUA_32BITS $(SYSCFLAGS) $(MYCFLAGS)
+# CFLAGS= -O2 -Wall -Wextra -DLUA_COMPAT_5_2 $(SYSCFLAGS) $(MYCFLAGS)
 LDFLAGS= $(SYSLDFLAGS) $(MYLDFLAGS)
 LIBS= -lm $(SYSLIBS) $(MYLIBS)
 
-AR=arm-none-eabi-ar rcu
-# AR= ar rcu
+# AR=arm-none-eabi-ar rcu
+AR= ar rcu
 RANLIB= ranlib
 RM= rm -f
 
@@ -25,7 +25,7 @@ SYSLIBS=
 # added the MCU & MYCFLAGS below from f765 makefile
 # MCU = cortex-m7
 
-MYCFLAGS= -mthumb -march=armv7e-m -mfpu=fpv5-sp-d16 -mfloat-abi=softfp 
+# MYCFLAGS= -mthumb -march=armv7e-m -mfpu=fpv5-sp-d16 -mfloat-abi=softfp 
 # MYCFLAGS= -mcpu=$(MCU) -mthumb -mlittle-endian -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb-interwork -std=c99 -mapcs-float
 MYLDFLAGS=
 MYLIBS=
@@ -46,7 +46,7 @@ BASE_O= $(CORE_O) $(LIB_O) $(MYOBJS)
 LUA_T=	lua
 LUA_O=	lua.o
 
-LUAC_T=	luac
+LUAC_T=	luacc
 LUAC_O=	luac.o
 
 ALL_O= $(BASE_O) $(LUA_O) $(LUAC_O)
